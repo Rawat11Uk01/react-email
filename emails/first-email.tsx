@@ -1,9 +1,13 @@
 import {
+  CodeBlock,
+  Column,
   Container,
+  dracula,
   Heading,
   Hr,
   Html,
   Img,
+  Row,
   Section,
   Tailwind,
   Text,
@@ -68,6 +72,20 @@ export default function Email() {
               We are now proud to open up these tools for L&D teams everywhere,
               It's a fresh new approach to learning for busy corporate employees
             </Text>
+          </Section>
+          <Section
+            style={{
+              padding: "10px",
+              background: "#808080",
+              marginTop: "10px",
+            }}
+          >
+            <CodeBlock
+              code={code}
+              lineNumbers
+              theme={dracula}
+              language="javascript"
+            />
           </Section>
         </Container>
       </Tailwind>

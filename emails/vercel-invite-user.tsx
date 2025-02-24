@@ -79,9 +79,9 @@ export const VercelInviteUserEmail = ({
               ) has invited you to the <strong>{teamName}</strong> team on{" "}
               <strong>Vercel</strong>.
             </Text>
-            <Section>
-              <Row>
-                <Column align="right">
+            <Section style={{border:'1px solid red'}}>
+              <Row style={{border:'1px solid red'}}>
+                <Column align="right" style={{border:'1px solid blue'}}>
                   <Img
                     className="rounded-full"
                     src={userImage}

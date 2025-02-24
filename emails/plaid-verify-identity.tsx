@@ -1,158 +1,215 @@
 import {
+  Html,
+  Head,
   Body,
   Container,
-  Head,
-  Heading,
-  Html,
-  Img,
-  Link,
   Section,
   Text,
+  Img,
+  Row,
+  Column,
+  Button,
 } from "@react-email/components";
 import * as React from "react";
+const CourseAnnouncementEmail = () => {
+  return (
+    <Html>
+      <Head />
+      <Body style={main}>
+        <Container style={container}>
+          {/* Logo Section */}
+          <Section style={logoSection}>
+            <Img
+              src="https://www.enqurious.com/logo.png"
+              alt="Enqurious Logo"
+              width="150"
+            />
+          </Section>
 
-interface PlaidVerifyIdentityEmailProps {
-  validationCode?: string;
-}
+          {/* Greeting */}
+          <Section>
+            <Text style={greeting}>👋 Monalisha</Text>
+            <Text style={message}>
+              Great news! We've just added an exciting new [content type] to
+              your learning portal.
+            </Text>
+          </Section>
 
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "";
+          {/* Course Information */}
+          <Section style={card}>
+            <Img
+              src="https://your-image-source.com/course-image.png"
+              alt="Course Image"
+              style={courseImage}
+            />
+            <Text style={courseTitle}>
+              Zero to Hero in Python for Machine Learning - Beginner to Advance
+            </Text>
 
-export const PlaidVerifyIdentityEmail = ({
-  validationCode,
-}: PlaidVerifyIdentityEmailProps) => (
-  <Html>
-    <Head />
-    <Body style={main}>
-      <Container style={container}>
-        <Img
-          src={`${baseUrl}/static/plaid-logo.png`}
-          width="212"
-          height="88"
-          alt="Plaid"
-          style={logo}
-        />
-        <Text style={tertiary}>Verify Your Identity</Text>
-        <Heading style={secondary}>
-          Enter the following code to finish linking Venmo.
-        </Heading>
-        <Section style={codeContainer}>
-          <Text style={code}>{validationCode}</Text>
-        </Section>
-        <Text style={paragraph}>Not expecting this email?</Text>
-        <Text style={paragraph}>
-          Contact{" "}
-          <Link href="mailto:login@plaid.com" style={link}>
-            login@plaid.com
-          </Link>{" "}
-          if you did not request this code.
-        </Text>
-      </Container>
-      <Text style={footer}>Securely powered by Plaid.</Text>
-    </Body>
-  </Html>
-);
+            <Row>
+              <Column style={dateColumn}>
+                <Text style={dateLabel}>Start date</Text>
+                <Text style={dateValue}>Feb 10 2024 10:00 AM</Text>
+              </Column>
+              <Column style={dateColumn}>
+                <Text style={dateLabel}>End date</Text>
+                <Text style={dateValue}>Feb 20 2024 12:00 PM</Text>
+              </Column>
+            </Row>
+          </Section>
 
-PlaidVerifyIdentityEmail.PreviewProps = {
-  validationCode: "144833",
-} as PlaidVerifyIdentityEmailProps;
+          {/* Important Note Section */}
+          <Section style={noteSection}>
+            <Text style={noteTitle}>⚠ Important note</Text>
+            <Text style={noteContent}>
+              This is an assessment designed to challenge and validate your
+              skills. You have [X] minutes to complete this assessment. The
+              clock starts ticking as soon as you begin!
+            </Text>
+          </Section>
 
-export default PlaidVerifyIdentityEmail;
+          {/* Encouragement & CTA */}
+          <Section>
+            <Text style={encouragement}>
+              Stay focused, stay curious, and keep going strong! 🚀
+            </Text>
+            <Button pX={20} pY={12} style={button} href="https://your-link.com">
+              Get Started
+            </Button>
+          </Section>
 
+          {/* Footer */}
+          <Section style={footer}>
+            <Text>Please click here if the button is not working</Text>
+            <Text style={footerText}>
+              Sent with ❤️ from Enqurious by Mentorskool
+              <br />
+              Contact us at{" "}
+              <a href="mailto:notifications@mentorskool.com">
+                notifications@mentorskool.com
+              </a>
+              <br />
+              Visit us at{" "}
+              <a href="https://www.enqurious.com">www.enqurious.com</a>
+            </Text>
+          </Section>
+        </Container>
+      </Body>
+    </Html>
+  );
+};
+
+export default CourseAnnouncementEmail;
+
+// Styles
 const main = {
-  backgroundColor: "#ffffff",
-  fontFamily: "HelveticaNeue,Helvetica,Arial,sans-serif",
+  backgroundColor: "#f4f4f4",
+  fontFamily: "Arial, sans-serif",
 };
 
 const container = {
-  backgroundColor: "#ffffff",
-  border: "1px solid #eee",
-  borderRadius: "5px",
-  boxShadow: "0 5px 10px rgba(20,50,70,.2)",
-  marginTop: "20px",
-  maxWidth: "360px",
+  maxWidth: "600px",
   margin: "0 auto",
-  padding: "68px 0 130px",
+  backgroundColor: "#fff",
+  padding: "20px",
+  borderRadius: "8px",
 };
 
-const logo = {
-  margin: "0 auto",
+const logoSection = {
+  textAlign: "center",
+  marginBottom: "20px",
 };
 
-const tertiary = {
-  color: "#0a85ea",
-  fontSize: "11px",
-  fontWeight: 700,
-  fontFamily: "HelveticaNeue,Helvetica,Arial,sans-serif",
-  height: "16px",
-  letterSpacing: "0",
-  lineHeight: "16px",
-  margin: "16px 8px 8px 8px",
-  textTransform: "uppercase" as const,
-  textAlign: "center" as const,
+const greeting = {
+  fontSize: "18px",
+  fontWeight: "bold",
+  marginBottom: "10px",
 };
 
-const secondary = {
-  color: "#000",
-  display: "inline-block",
-  fontFamily: "HelveticaNeue-Medium,Helvetica,Arial,sans-serif",
-  fontSize: "20px",
-  fontWeight: 500,
-  lineHeight: "24px",
-  marginBottom: "0",
-  marginTop: "0",
-  textAlign: "center" as const,
+const message = {
+  fontSize: "16px",
+  color: "#333",
+  marginBottom: "20px",
 };
 
-const codeContainer = {
-  background: "rgba(0,0,0,.05)",
-  borderRadius: "4px",
-  margin: "16px auto 14px",
-  verticalAlign: "middle",
-  width: "280px",
+const card = {
+  backgroundColor: "#F8FAFC",
+  borderRadius: "8px",
+  padding: "20px",
+  marginBottom: "20px",
+  textAlign: "center",
 };
 
-const code = {
-  color: "#000",
-  display: "inline-block",
-  fontFamily: "HelveticaNeue-Bold",
-  fontSize: "32px",
-  fontWeight: 700,
-  letterSpacing: "6px",
-  lineHeight: "40px",
-  paddingBottom: "8px",
-  paddingTop: "8px",
-  margin: "0 auto",
+const courseImage = {
   width: "100%",
-  textAlign: "center" as const,
+  height: "auto",
+  borderRadius: "8px",
+  marginBottom: "15px",
 };
 
-const paragraph = {
-  color: "#444",
-  fontSize: "15px",
-  fontFamily: "HelveticaNeue,Helvetica,Arial,sans-serif",
-  letterSpacing: "0",
-  lineHeight: "23px",
-  padding: "0 40px",
-  margin: "0",
-  textAlign: "center" as const,
+const courseTitle = {
+  fontSize: "16px",
+  fontWeight: "bold",
+  marginBottom: "10px",
+  color: "#1E40AF",
 };
 
-const link = {
-  color: "#444",
-  textDecoration: "underline",
+const dateColumn = {
+  width: "50%",
+  padding: "0 10px",
+};
+
+const dateLabel = {
+  fontSize: "14px",
+  color: "#64748B",
+  marginBottom: "5px",
+};
+
+const dateValue = {
+  fontSize: "14px",
+  color: "#475569",
+};
+
+const noteSection = {
+  backgroundColor: "#FEF3C7",
+  padding: "15px",
+  borderRadius: "8px",
+  marginBottom: "20px",
+};
+
+const noteTitle = {
+  fontSize: "14px",
+  fontWeight: "bold",
+  color: "#D97706",
+  marginBottom: "5px",
+};
+
+const noteContent = {
+  fontSize: "14px",
+  color: "#B45309",
+};
+
+const encouragement = {
+  fontSize: "16px",
+  fontWeight: "bold",
+  marginBottom: "20px",
+};
+
+const button = {
+  backgroundColor: "#3B82F6",
+  color: "#fff",
+  textDecoration: "none",
+  borderRadius: "5px",
 };
 
 const footer = {
-  color: "#000",
-  fontSize: "12px",
-  fontWeight: 800,
-  letterSpacing: "0",
-  lineHeight: "23px",
-  margin: "0",
+  textAlign: "center",
+  padding: "20px 0",
+  borderTop: "1px solid #e5e7eb",
   marginTop: "20px",
-  fontFamily: "HelveticaNeue,Helvetica,Arial,sans-serif",
-  textAlign: "center" as const,
-  textTransform: "uppercase" as const,
+};
+
+const footerText = {
+  fontSize: "12px",
+  color: "#9CA3AF",
 };
